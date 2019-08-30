@@ -48,3 +48,34 @@ class Pane{
     }
 }
 
+// TODO: Include the new drag and drop handling system for moving "windows"
+function dragElem(elem) {
+    let targetX, targetY, initX, initY = 0;
+    elem.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        initX = e.clientX;
+        initY = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        targetX = initX - e.clientX;
+        targetY = initY - e.clientY;
+        initX = e.clientX;
+        initY = e.clientY;
+        elem.style.top = (elem.offsetTop - targetY) + 'px';
+        elem.style.left = (elem.offsetLeft - targetX) + 'px';
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
