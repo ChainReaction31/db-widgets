@@ -1,0 +1,12 @@
+.db-window{
+    border: 4px solid black;
+    border-radius: 6px;
+    resize: both;
+    overflow: auto;
+    /*   Need a way to constrain windows to parents only
+    Barring that, a management tool to handle where the windows are*/
+}
+
+.db-title{
+    background: darkgray;
+}
